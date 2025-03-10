@@ -35,26 +35,25 @@ npx cypress open
 
 ya solo queda crear tus pruebas cypress
 ```
-Se pide crear un formulario de registro que contenga los siguientes campos:
+## Descripción de las Pruebas
 
-- Nombre completo (obligatorio)
-- Correo electrónico (obligatorio, con validación de formato)
-- Contraseña (obligatorio, mínimo 8 caracteres, debe incluir al menos una letra mayúscula, una minúscula y un número)
-- Confirmación de contraseña (debe coincidir con la contraseña)
-- Fecha de nacimiento (opcional)
-- Términos y condiciones (checkbox obligatorio)
-- Botón de envío
- El formulario debe incluir las siguientes validaciones con Cypress:
+### 1. **Formulario de Registro**
 
-- Todos los campos marcados como obligatorios no pueden estar vacíos
-- El correo electrónico debe tener un formato válido (usar regex adecuada)
-- La contraseña debe cumplir con los requisitos mínimos de seguridad
-- Las contraseñas ingresadas deben coincidir
-- El checkbox de términos y condiciones debe estar marcado para poder enviar el formulario
-- Mostrar mensajes de error específicos para cada validación fallida
-- El botón de envío debe deshabilitarse si hay errores de validación
-- Después de un registro exitoso, el usuario debe ser redirigido a una página de confirmación que:
+Las pruebas de este formulario verifican lo siguiente:
 
-Muestre un mensaje de bienvenida personalizado con el nombre del usuario
-Incluya un resumen de la información registrada (sin mostrar la contraseña)
-Tenga un botón para regresar al inicio o continuar al área de usuario
+- **Campos obligatorios vacíos**: Asegura que los campos obligatorios muestren errores si se dejan vacíos.
+- **Formato de correo electrónico**: Verifica que el correo electrónico tenga un formato válido y muestra un mensaje de error si es incorrecto.
+- **Requisitos de la contraseña**: Asegura que la contraseña cumpla con los requisitos mínimos (longitud, mayúsculas, minúsculas, números) y muestra errores si no los cumple.
+- **Contraseñas coincidentes**: Verifica que las contraseñas en los campos de "Contraseña" y "Confirmar contraseña" coincidan.
+- **Términos y condiciones**: Asegura que los términos y condiciones sean aceptados antes de enviar el formulario.
+- **Habilitación del botón de envío**: Verifica que el botón de envío esté habilitado solo cuando todos los campos sean válidos.
+- **Envío del formulario y redirección**: Verifica que el formulario se envíe correctamente y redirija a la página de confirmación.
+
+### 2. **Página de Confirmación**
+
+Las pruebas de la página de confirmación verifican:
+
+- **Mensaje de bienvenida**: Asegura que el nombre del usuario registrado se muestre en el mensaje de bienvenida.
+- **Resumen de la información registrada**: Verifica que la información del usuario (nombre, correo y fecha de nacimiento) se muestre correctamente.
+- **Botones de navegación**: Verifica que los botones de navegación hacia otras páginas estén presentes y funcionales.
+- **Redirección sin datos en `localStorage`**: Si no hay datos de registro en `localStorage`, se redirige al usuario a la página de inicio.
